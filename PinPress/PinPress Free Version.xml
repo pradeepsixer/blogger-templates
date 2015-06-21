@@ -2918,19 +2918,6 @@ img{margin-bottom:0}
   <b:include name='quickedit'/>
 </b:includable>
   </b:widget>
-  <b:widget id='HTML3' locked='false' title='Follow Us' type='HTML'>
-    <b:includable id='main'>
-  <!-- only display title if it's non-empty -->
-  <b:if cond='data:title != &quot;&quot;'>
-    <h2 class='title'><data:title/></h2>
-  </b:if>
-  <div class='widget-content'>
-    <data:content/>
-  </div>
-
-  <b:include name='quickedit'/>
-</b:includable>
-  </b:widget>
   <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts'>
     <b:includable id='main'>
 <b:if cond='data:title'><h2><data:title/></h2></b:if>
@@ -3028,7 +3015,7 @@ img{margin-bottom:0}
 </b:includable>
   </b:widget>
 <!-- Pradeep CUstom -->
-<b:widget id='Disqus1' locked='true' title='Disqus for PCTips' type='HTML'>
+<b:widget id='HTML4' locked='true' title='Disqus for PCTips' type='HTML'>
     <b:includable id='main'>
             <script type='text/javascript'>
                 var disqus_shortname = &#39;pctips-in&#39;;
