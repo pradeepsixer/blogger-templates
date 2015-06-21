@@ -3,6 +3,24 @@
 <html expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
 <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+<!-- If it is the index page, then show predefined description and keywords. Or else show the page name as the description and keywords -->
+<b:if cond='data:blog.pageType == &quot;index&quot;'>
+      <meta content='tips,tricks,computer,windows,linux,security,network,internet,mobiles' name='keywords'/>
+      <meta content='This website provides useful tips and tricks related to LINUX, Windows, Security, UNIX, network, internet and mobile' name='description'/>
+      <title>
+        <data:blog.title/>
+      </title>
+      <b:else/>
+      <b:if cond='data:blog.pageType == &quot;item&quot;'>
+        <meta expr:content='data:blog.pageName' name='description'/>
+        <meta expr:content='data:blog.pageName' name='keywords'/>
+        <title>
+          <data:blog.pageName/>
+          | 
+          <data:blog.title/>
+        </title>
+      </b:if>
+    </b:if>
 <title><data:blog.pageTitle/></title>
 <b:include data='blog' name='all-head-content'/>
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'/>
@@ -848,7 +866,7 @@ background-color: #FFFFFF;
 border-radius: 1px 1px 1px 1px;
 box-shadow: 0 0 0 1px rgba(0,0,0,0.05);
 
-  line-height: 98px;
+ /* line-height: 98px; */
   background: #FFF url("http://4.bp.blogspot.com/-u8ZOp2KyBdo/VWcsFN545bI/AAAAAAAAFbY/fptXy6fX66k/s1600/header-top.png") repeat-x top center;
   border-bottom: 1px solid #d3d5d7;
   -webkit-box-shadow: 0 0 5px 0 #e2e3e4;
@@ -936,7 +954,7 @@ i{float:none;margin:0
 .container:after{clear:both}
 #header{margin-right:30px;float:left}
 #header,#header a{color:#E74C3C}
-#header h1{  line-height: 20px;
+#header h1{  /*line-height: 20px;*/
   margin-top: 30px;
   font-size: 35px;
   font-weight: bold;
@@ -991,7 +1009,7 @@ margin-left: 10px;}
   margin-top: 20px;
   margin-left: -9px;
   margin-right: -9px;}
-.entry-image img{width:100%;-webkit-transition:all .35s ease-in-out;-moz-transition:all .35s ease-in-out;-o-transition:all .35s ease-in-out;transition:all .35s ease-in-out}
+.entry-image img{/* Pradeep Comment width:100%;*/-webkit-transition:all .35s ease-in-out;-moz-transition:all .35s ease-in-out;-o-transition:all .35s ease-in-out;transition:all .35s ease-in-out; margin-left:auto; margin-right: auto;}
 
 .entry-meta{background:none repeat scroll 0 0 #FFF;padding:15px 30px 15px;border-color:#fff;border-style:solid;border-width:1px 0 0;position:relative;background:#fcfcfc;   padding-top: 20px;
   border-top: 1px solid #ecedee;}
@@ -1866,17 +1884,16 @@ function related_results_labels_thumbs(e){for(var t=0;t<e.feed.entry.length;t++)
 <div class='nav-collapse collapse'>
  <ul class='nav' id='menu-primary'>
  <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
- <li><a href='#'>Blog</a></li>
-<li><a href='#'>Posts</a></li>
- <li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>Portfolio<i class='fa fa-caret-down'/></a>
+ <li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>Categories<i class='fa fa-caret-down'/></a>
 <ul class='dropdown-menu'>
- <li><a href='#'>Full Width</a></li>
- <li><a href='#'>Right Sidebar</a></li>
- <li><a href='#'>Left Sidebar</a></li>
- <li><a href='#'>404 Page</a></li> 
+ <li><a href='http://www.pctips4u.com/search/LABEL/linux'>LINUX</a></li>
+ <li><a href='http://www.pctips4u.com/search/LABEL/windows'>Windows</a></li>
+ <li><a href='http://www.pctips4u.com/search/LABEL/security'>Security</a></li>
+ <li><a href='http://www.pctips4u.com/search/LABEL/internet'>Internet</a></li>
 </ul>
+<li><a href='http://www.pctips4u.com/search/LABEL/digest'>Tech Digest</a></li>
+<li><a href='http://www.pctips4u.com/p/write-for-us.html'>Write For Us</a></li>
 </li>
- <li><a href='http://www.soratemplates.com/2015/05/pinpress-blogger-templates.html'>Download This Template</a></li>
  </ul>
 </div>
 
@@ -2417,7 +2434,10 @@ function related_results_labels_thumbs(e){for(var t=0;t<e.feed.entry.length;t++)
 
 <b:if cond='data:blog.pageType == &quot;index&quot;'>
 <span expr:id='&quot;p&quot; + data:post.id'><data:post.body/></span>
-<script type='text/javascript'>var x=&quot;<data:post.title/>&quot;,y=&quot;<data:post.url/>&quot;,z=&quot;<data:post.author/>&quot;,t=&quot;<data:post.timestamp/>&quot;,u=&quot;<data:post.numComments/>&quot;;rm(&quot;p<data:post.id/>&quot;)</script><b:else/><div class='entry-container'><div class='entry-content'><h1><b:if cond='data:post.link'><a expr:href='data:post.link' expr:title='data:post.title'><data:post.title/></a><b:else/><data:post.title/>
+<script type="text/javascript">
+function createPostSummary(a){var p=document.getElementById(a);imgtag=&quot;&quot;;ifrtag=&quot;&quot;;ifrsrc=&quot;&quot;;ifrtb=-1;img=p.getElementsByTagName(&quot;img&quot;);ifr=p.getElementsByTagName(&quot;iframe&quot;);for(var i=0;i&lt;ifr.length;i++){ifrsrc=ifr[i].src;if(ifrsrc.indexOf(&quot;//www.youtube.com/embed/&quot;)!=-1){ifrtb=i;break}else if(ifrsrc.indexOf(&quot;//player.vimeo.com/video/&quot;)!=-1){ifrtb=i;break}else if(ifrsrc.indexOf(&quot;//www.dailymotion.com/embed/video/&quot;)!=-1){ifrtb=i;break}else if(ifrsrc.indexOf(&quot;//w.soundcloud.com/player/&quot;)!=-1){ifrtb=i;break}}if(ifrtb!=-1)ifrtag=&#39;&lt;div class=&quot;entry-video&quot;&gt;&lt;iframe width=&quot;840&quot; height=&quot;472&quot; src=&quot;&#39;+ifrsrc+&#39;?vq=medium&amp;rel=0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&#39;;else if(img.length&gt;=1)imgtag=&#39;&lt;div class=&quot;entry-image&quot;&gt;&lt;a href=&quot;&#39;+y+&#39;&quot;&gt;&lt;img class=&quot;thumb&quot; src=&quot;&#39;+img[0].src+&#39;&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&#39;;else imgtag=&#39;&lt;div class=&quot;entry-image no-image&quot;&gt;&lt;a href=&quot;&#39;+y+&#39;&quot;&gt;&lt;img class=&quot;thumb&quot; src=&quot;https://lh4.googleusercontent.com/-G9M2DTCTUwM/Tlh-2pwtc5I/AAAAAAAABKM/kCJg-Kf3W2M/no_image_yet.jpg&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&#39;;p.innerHTML=&#39;&lt;div class=&quot;entry-container&quot;&gt;&lt;div class=&quot;entry-content&quot;&gt; &lt;h1 class=&quot;entry-title&quot;&gt; &lt;a href=&quot;&#39;+y+&#39;&quot;&gt;&#39;+x+&#39; &lt;/a&gt; &lt;/h1&gt; &lt;div class=&quot;meta&quot;&gt;&lt;div&gt;&lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt; &#39;+t+&#39;&lt;/div&gt; &lt;div&gt;&lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt; &lt;span style=&quot;color:#E74C3C&quot;&gt;&#39;+z+&#39;&lt;/div&gt;&lt;/span&gt;&lt;div&gt;&lt;i class=&quot;fa fa-comments&quot;&gt;&lt;/i&gt; &lt;span class=&quot;disqus-comment-count&quot; data-disqus-url=&quot;&#39; + y +&#39;&quot;&gt;0 Comments&lt;/span&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;&#39;+ifrtag+imgtag+&#39;&lt;p&gt;&#39;+stripTags(p.innerHTML,60)+&quot;...&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&quot;}$(document).ready(function(){$(&#39;#mycontent&#39;).html(&quot;Created By &lt;a href=&#39;http://www.soratemplates.com/&#39; rel=&#39;dofollow&#39; target=&#39;_blank&#39; title=&#39;Blogger Templates&#39;&gt;Sora Templates&lt;/a&gt; and &lt;a href=&#39;http://mybloggerthemes.com/&#39; rel=&#39;dofollow&#39; target=&#39;_blank&#39; title=&#39;Blogger Templates&#39;&gt;My Blogger Themes&lt;/a&gt;&quot;);setInterval(function(){if(!$(&#39;#mycontent:visible&#39;).length)window.location.href=&#39;http://www.soratemplates.com/&#39;},3000)});
+</script>
+<script type='text/javascript'>var x=&quot;<data:post.title/>&quot;,y=&quot;<data:post.url/>&quot;,z=&quot;<data:post.author/>&quot;,t=&quot;<data:post.timestamp/>&quot;,u=&quot;<data:post.numComments/>&quot;;createPostSummary(&quot;p<data:post.id/>&quot;)</script><b:else/><div class='entry-container'><div class='entry-content'><h1><b:if cond='data:post.link'><a expr:href='data:post.link' expr:title='data:post.title'><data:post.title/></a><b:else/><data:post.title/>
 
 
   </b:if></h1><div class='meta1'><p><small>  <span><i class='fa fa-clock-o'/> <data:post.timestamp/></span>    <span>  <i class='fa fa-tags'/>       <b:if cond='data:post.labels'>
@@ -2432,7 +2452,9 @@ function related_results_labels_thumbs(e){for(var t=0;t<e.feed.entry.length;t++)
                                   </b:if>
                                 </b:loop>
                               </span>
-                            </b:if></span><i class='fa fa-comments'/> <data:post.numComments/> Comments</small></p></div><data:post.body/></div></div>
+                              <b:else/>
+                              No Label
+                            </b:if></span><i class='fa fa-comments'/> <span class="disqus-comment-count" expr:data-disqus-url="data:post.url">0 Comments</span></small></p></div><data:post.body/></div></div>
  
 </b:if>
 
@@ -2469,7 +2491,7 @@ function related_results_labels_thumbs(e){for(var t=0;t<e.feed.entry.length;t++)
 
 <b:if cond='data:blog.pageType == &quot;item&quot;'>
 <div class='author-meta box'><div class='author-image'> <script expr:src='&quot;/feeds/posts/default/&quot; + data:post.id + &quot;?alt=json-in-script&amp;amp;callback=av&quot;'/>
-</div><div class='author-body'><h2 class='vcard author'><span class='fn'><b:if cond='data:top.showAuthor'><a><data:post.author/></a></b:if></span></h2><p>Some say he&#8217;s half man half fish, others say he&#8217;s more of a seventy/thirty split. Either way he&#8217;s a fishy bastard. <a href='https://plus.google.com/113209237972380216510?rel=author'>Google</a></p></div></div>
+</div><div class='author-body'><h2 class='vcard author'><span class='fn'><b:if cond='data:top.showAuthor'><a><data:post.author/></a></b:if></span></h2><p>A LINUX enthusiast and tech passionate guy. Love to watch Anime and play cricket. Got extra bit of care in myself, guess that&#39;s what people call selfishness :-P <a href='https://plus.google.com/+PradeepKumarIndia/about'>Google+</a></p></div></div>
 </b:if>
  	
 
@@ -2865,16 +2887,16 @@ img{margin-bottom:0}
 <div class='widget widget-about'>
 			<div class='widget-about-img'>
 				<a href='http://2.bp.blogspot.com/-_8zliqGXjdM/VWcJEywVqBI/AAAAAAAAFao/ncSzh223T6A/s1600/a27dcbbda29b8f5a5ee1f67795fe7d66.png' rel='prettyPhoto'><img alt='AHMED HASSAN MOHAMMED' src='http://2.bp.blogspot.com/-_8zliqGXjdM/VWcJEywVqBI/AAAAAAAAFao/ncSzh223T6A/s1600/a27dcbbda29b8f5a5ee1f67795fe7d66.png'/></a>			</div>
-			<h3>AHMED HASSAN MOHAMMED</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<h3>Follow Us</h3>
+			<p>Follow us on Social Networking sites to get instant updates from this site on your social networking channel.</p>
 							<div class='social-ul'>
 					<ul>
-													<li class='social-facebook'><a href='#' target='_blank'><i class='fa fa-facebook'/></a></li>
-													<li class='social-twitter'><a href='#' target='_blank'><i class='fa fa-twitter'/></a></li>
-													<li class='social-google'><a href='#' target='_blank'><i class='fa fa-google-plus'/></a></li>
-													<li class='social-linkedin'><a href='#' target='_blank'><i class='fa fa-linkedin'/></a></li>
-													<li class='social-youtube'><a href='#' target='_blank'><i class='fa fa-youtube-play'/></a></li>
-													<li class='social-email'><a href='mailto:yourmail.com@gmail.com' target='_blank'><i class='fa fa-envelope'/></a></li>
+													<li class='social-facebook'><a href='https://www.facebook.com/groups/techgeeks001/' target='_blank'><i class='fa fa-facebook'/></a></li>
+													<li class='social-twitter'><a href='https://twitter.com/PCTips_IN' target='_blank'><i class='fa fa-twitter'/></a></li>
+													<li class='social-google'><a href='https://plus.google.com/u/0/+pctipsin/posts' target='_blank'><i class='fa fa-google-plus'/></a></li>
+													<!--<li class='social-linkedin'><a href='#' target='_blank'><i class='fa fa-linkedin'/></a></li>-->
+													<li class='social-youtube'><a href='https://www.youtube.com/user/pctipsin' target='_blank'><i class='fa fa-youtube-play'/></a></li>
+													<li class='social-email'><a href='mailto:pctips.in@gmail.com' target='_blank'><i class='fa fa-envelope'/></a></li>
 											</ul>
 				</div><!-- End social-ul -->
 						<div class='clearfix'/>
@@ -3005,6 +3027,47 @@ img{margin-bottom:0}
   </div>
 </b:includable>
   </b:widget>
+<!-- Pradeep CUstom -->
+<b:widget id='Disqus1' locked='true' title='Disqus for PCTips' type='HTML'>
+    <b:includable id='main'>
+            <script type='text/javascript'>
+                var disqus_shortname = &#39;pctips-in&#39;;
+                var disqus_blogger_current_url = &quot;<data:blog.canonicalUrl/>&quot;;
+                if (!disqus_blogger_current_url.length) {
+                    disqus_blogger_current_url = &quot;<data:blog.url/>&quot;;
+                }
+                var disqus_blogger_homepage_url = &quot;<data:blog.homepageUrl/>&quot;;
+                var disqus_blogger_canonical_homepage_url = &quot;<data:blog.canonicalHomepageUrl/>&quot;;
+            </script>
+            <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                <style type='text/css'>
+                    #comments {display:none;}
+                </style>
+                <script type='text/javascript'>
+                    (function() {
+                        var bloggerjs = document.createElement(&#39;script&#39;);
+                        bloggerjs.type = &#39;text/javascript&#39;;
+                        bloggerjs.async = true;
+                        bloggerjs.src = &#39;//&#39;+disqus_shortname+&#39;.disqus.com/blogger_item.js&#39;;
+                        (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(bloggerjs);
+                    })();
+                </script>
+            </b:if>
+                <style type='text/css'>
+                    .post-comment-link { visibility: hidden; }
+                </style>
+                <script type='text/javascript'>
+                (function() {
+                    var bloggerjs = document.createElement(&#39;script&#39;);
+                    bloggerjs.type = &#39;text/javascript&#39;;
+                    bloggerjs.async = true;
+                    bloggerjs.src = &#39;//&#39;+disqus_shortname+&#39;.disqus.com/blogger_index.js&#39;;
+                    (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(bloggerjs);
+                })();
+                </script>
+        </b:includable>
+  </b:widget>
+<!-- End of Pradeep Custom -->
 </b:section>
 </div>
 
@@ -3062,5 +3125,19 @@ $(document).ready(function() {
 $('.go-top').click(function(){$('.st-content').animate({scrollTop:0},'slow');$('html, body').animate({scrollTop:0},'slow');return false;});
 //]]></script>
 
+<!-- Pradeep Custom -->
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'pctips-in';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<!-- End of Pradeep Custom -->
 </body>
 </html>
