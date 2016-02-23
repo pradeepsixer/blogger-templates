@@ -12,8 +12,6 @@
       </title>
       <b:else/>
       <b:if cond='data:blog.pageType == &quot;item&quot;'>
-        <meta expr:content='data:blog.pageName' name='description'/>
-        <meta expr:content='data:blog.pageName' name='keywords'/>
         <title>
           <data:blog.pageName/>
           | 
